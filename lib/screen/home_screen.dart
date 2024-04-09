@@ -181,7 +181,7 @@ class HomeScreen extends ConsumerWidget {
                 ),
               );
             },
-            child: Text('CodeGenerationScreen'),
+            child: Text('CodeGenerationScreen'), // 깃헙 테스트
           ),
         ],
       ),
