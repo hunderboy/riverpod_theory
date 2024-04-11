@@ -18,6 +18,7 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
+    final state5 = ref.watch(gStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -25,6 +26,7 @@ class CodeGenerationScreen extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('state1: $state1'),
+          const SizedBox(height: 10,),
           state2.when(
             // data: 로딩후 데이터가 있을때, 반환받은 값
             data: (data) => Text(
@@ -36,6 +38,7 @@ class CodeGenerationScreen extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
           ),
+          const SizedBox(height: 10,),
           state3.when(
             // data: 로딩후 데이터가 있을때, 반환받은 값
             data: (data) => Text(
@@ -47,10 +50,42 @@ class CodeGenerationScreen extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
           ),
+          const SizedBox(height: 10,),
           Text(
             'state4: $state4',
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 10,),
+          Text(
+            'state5: $state5',
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.redAccent,
+                ),
+                onPressed: () {
+                  ref.read(gStateNotifierProvider.notifier).increment();
+                },
+                child: const Text('increment',),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.greenAccent,
+                ),
+                onPressed: () {
+                  ref.read(gStateNotifierProvider.notifier).decrement();
+                },
+                child: const Text('decrement'),
+              ),
+            ],
+          )
         ],
       )
     );

@@ -6,6 +6,25 @@ part of 'code_generation_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$gStateNotifierHash() => r'f5d3562260bad49518ffe5b82e60b7cc1b8655f2';
+
+/// ------------------------------------------------------------------------------------------
+///Riverpod v2 StateNotifierProvider 코드제너레이션으로 생성하기
+///
+/// Copied from [GStateNotifier].
+@ProviderFor(GStateNotifier)
+final gStateNotifierProvider =
+    AutoDisposeNotifierProvider<GStateNotifier, int>.internal(
+  GStateNotifier.new,
+  name: r'gStateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$gStateNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$GStateNotifier = AutoDisposeNotifier<int>;
 String _$gStateHash() => r'7ccdacb016fab2894413745b936f82987f9f72cf';
 
 /// See also [gState].
@@ -49,7 +68,7 @@ final gStateFuture2Provider = FutureProvider<int>.internal(
 );
 
 typedef GStateFuture2Ref = FutureProviderRef<int>;
-String _$gStateMulitplyHash() => r'c9a343d363f53f295ce8b4887e64eb65d9fc6f0a';
+String _$gStateMulitplyHash() => r'1629c20af20da216ff307d69ba780a2e4e51b722';
 
 /// Copied from Dart SDK
 class _SystemHash {
