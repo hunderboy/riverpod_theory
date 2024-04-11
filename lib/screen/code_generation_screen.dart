@@ -85,7 +85,15 @@ class CodeGenerationScreen extends ConsumerWidget {
                 child: const Text('decrement'),
               ),
             ],
-          )
+          ),
+
+          /// invalidate() 함수 => 초기화 함수
+          ElevatedButton(
+            onPressed: () {
+              ref.invalidate(gStateNotifierProvider);
+            },
+            child: Text('invalidate'),
+          ),
         ],
       )
     );
