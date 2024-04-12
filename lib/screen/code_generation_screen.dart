@@ -10,7 +10,8 @@ class CodeGenerationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // code generation 을 통해 만들어진 gStateProvider(code_generation_provider.g.dart)
+    print('최상위 build');
+
     final state1 = ref.watch(gStateProvider);
     final state2 = ref.watch(gStateFutureProvider);
     final state3 = ref.watch(gStateFuture2Provider);
@@ -18,7 +19,7 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
-    final state5 = ref.watch(gStateNotifierProvider);
+    // final state5 = ref.watch(gStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -56,9 +57,28 @@ class CodeGenerationScreen extends ConsumerWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10,),
-          Text(
-            'state5: $state5',
-            textAlign: TextAlign.center,
+          // Text(
+          //   'state5: $state5',
+          //   textAlign: TextAlign.center,
+          // ),
+          // _StateFiveWidget(),
+          /// Consumer 위젯 : 부분 빌드
+          Consumer(
+            builder: (context, ref, child) {
+              print('부분 build');
+              final state5 = ref.watch(gStateNotifierProvider);
+
+              return Row(
+                children: [
+                  Text(
+                    'state5: $state5', /// 이부분 위젯만 변경
+                    textAlign: TextAlign.center,
+                  ),
+                  if (child != null) child,
+                ],
+              );
+            },
+            child: Text('hello'), /// 변경사항이 딱히 필요가 없는 위젯들을 child 위젯에 할당 (재 랜더링 필요없는 위젯들)
           ),
           const SizedBox(height: 10,),
           Row(
@@ -96,6 +116,22 @@ class CodeGenerationScreen extends ConsumerWidget {
           ),
         ],
       )
+    );
+  }
+}
+
+/// 전체 build 가 아닌 부분 build
+/// 근데 매번 ConsumerWidget 상속한 위젯을 만들어야 하는건 비효율적 => Consumer
+class _StateFiveWidget extends ConsumerWidget {
+  const _StateFiveWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state5 = ref.watch(gStateNotifierProvider);
+
+    return Text(
+      'state5: $state5',
+      textAlign: TextAlign.center,
     );
   }
 }
